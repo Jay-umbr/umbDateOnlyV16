@@ -1,0 +1,21 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <UmbDateOnlyContentFilesPath>$(MSBuildThisFileDirectory)..\App_Plugins\UmbDateOnly\**\*.*</UmbDateOnlyContentFilesPath>
+  </PropertyGroup>
+
+  <Target Name="CopyUmbDateOnlyAssets" BeforeTargets="BeforeBuild">
+    <ItemGroup>
+      <UmbDateOnlyContentFiles Include="$(UmbDateOnlyContentFilesPath)" />
+    </ItemGroup>
+    <Message Text="Copying UmbDateOnly files: $(UmbDateOnlyContentFilesPath) - #@(UmbDateOnlyContentFiles->Count()) files" Importance="high" />
+    <Copy SourceFiles="@(UmbDateOnlyContentFiles)" DestinationFiles="@(UmbDateOnlyContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\UmbDateOnly\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="ClearUmbDateOnlyAssets" BeforeTargets="Clean">
+    <ItemGroup>
+      <UmbDateOnlyDir Include="$(MSBuildProjectDirectory)\App_Plugins\UmbDateOnly\" />
+    </ItemGroup>
+    <Message Text="Clear old UmbDateOnly data" Importance="high" />
+    <RemoveDir Directories="@(UmbDateOnlyDir)" />
+  </Target>
+</Project>

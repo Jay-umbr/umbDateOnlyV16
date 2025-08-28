@@ -1,0 +1,30 @@
+{
+  "$schema": "https://docs.umbraco.com/json-schema/umbraco-package-schema.json",
+  "name": "UmbDateOnly",
+  "version": "1.0.1",
+  "extensions": [
+    {
+      "type": "propertyEditorUi",
+      "alias": "UmbDateOnly",
+      "name": "Date Only",
+      "element": "/App_Plugins/UmbDateOnly/date-only.js",
+      "elementName": "umb-date-only",
+      "meta": {
+        "label": "Date Only",
+        "icon": "icon-calendar",
+        "group": "common",
+        "propertyEditorSchemaAlias": "Umbraco.Plain.String",
+        "settings": {
+          "properties": [
+            {
+              "alias": "format",
+              "label": "Display format",
+              "description": "Tokens: D, DD, M, MM, MMM, MMMM, YY, YYYY",
+              "propertyEditorUiAlias": "Umb.PropertyEditorUi.TextBox"
+            }
+          ]
+        }
+      }
+      }
+  ]
+}
